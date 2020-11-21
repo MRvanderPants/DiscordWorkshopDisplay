@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
-const SteamWorkshop = require('steam-workshop');
-const http = require('http');
+const SteamWorkshop = require('./workshop-helper');
 
 /**
  * Create Discord instance
@@ -52,7 +51,7 @@ function createEmbed(item, message) {
  // Fetch all workshop related data
 function fetchWorkshop(url, callback) {
   const itemId = url.split('?id=')[1];
-  const workshop = new SteamWorkshop(null);
+  const workshop = new SteamWorkshop();
   workshop.getPublishedFileDetails(itemId, (err, files) => {
     if(err) {
       message.channel.send('Oops! Something has gone wrong');
